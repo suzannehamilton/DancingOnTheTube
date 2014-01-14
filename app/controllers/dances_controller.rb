@@ -12,7 +12,7 @@ class DancesController < ApplicationController
     redirect_to @dance
   end
 
-  def show
+  def edit
     @dance = Dance.find(params[:id])
   end
 

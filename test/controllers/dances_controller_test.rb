@@ -10,4 +10,11 @@ class DancesControllerTest < ActionController::TestCase
     assert listed_dances.include?(dances(:salsa))
     assert_not_nil listed_dances
   end
+
+  test "edit should get task for editing" do
+    get :edit, id: dances(:salsa)
+
+    assert_response :success
+    assert_equal dances(:salsa), assigns(:dance)
+  end
 end

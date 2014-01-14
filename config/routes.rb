@@ -8,7 +8,7 @@ Dott::Application.routes.draw do
   resources :dances
 
   get 'dances(.:format)' => 'dances#index'
-  get 'dances/:id' => 'dances#show'
+  get 'dances/:id' => 'dances#edit'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
