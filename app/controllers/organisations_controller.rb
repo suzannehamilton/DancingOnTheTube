@@ -9,9 +9,11 @@ class OrganisationsController < ApplicationController
   def create
     @organisation = Organisation.new(post_params)
 
-    @organisation.save
-
-    redirect_to action: :index, :notice => "New organisation created"
+    if @organisation.save
+      redirect_to action: :index, :notice => "New organisation created"
+    else
+      render 'new'
+    end
   end
 
   private

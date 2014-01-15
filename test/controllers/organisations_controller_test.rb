@@ -28,7 +28,6 @@ class OrganisationsControllerTest < ActionController::TestCase
   end
 
   test "invalid create should re-render creation form" do
-    skip
     post :create, organisation: {name: '', url: ''}
     assert_response :success
     assert_template :new
