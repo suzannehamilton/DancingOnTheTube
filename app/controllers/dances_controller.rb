@@ -8,8 +8,12 @@ class DancesController < ApplicationController
 
   def create
     @dance = Dance.new(post_params)
-    @dance.save
-    redirect_to action: :index, :notice => "New dance created"
+
+    if @dance.save
+      redirect_to action: :index, :notice => "New dance created"
+    else
+      render 'new'
+    end
   end
 
   def edit

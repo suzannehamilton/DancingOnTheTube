@@ -33,4 +33,10 @@ class DancesControllerTest < ActionController::TestCase
     post :create, dance: {name: 'Test name'}
     assert_redirected_to :controller => "dances", :action => "index", :notice => "New dance created"
   end
+
+  test "invalid create should re-render creation form" do
+    post :create, dance: {name: nil}
+    assert_response :success
+    assert_template :new
+  end
 end
