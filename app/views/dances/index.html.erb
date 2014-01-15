@@ -1,5 +1,7 @@
 <h1>Dances</h1>
 
+<%= link_to 'New dance', new_dance_path %>
+
 <% @dances.each do |dance| %>
   <ul>
     <li><%= dance.name %></li>
