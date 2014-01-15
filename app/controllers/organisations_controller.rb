@@ -11,7 +11,7 @@ class OrganisationsController < ApplicationController
 
     @organisation.save
 
-    redirect_to action: :index
+    redirect_to action: :index, :notice => "New organisation created"
   end
 
   private

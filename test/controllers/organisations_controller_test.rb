@@ -21,4 +21,9 @@ class OrganisationsControllerTest < ActionController::TestCase
       post :create, organisation: {name: 'Test name', url: 'test url'}
     end
   end
+
+  test "create should redirect to index" do
+    post :create, organisation: {name: 'Test name', url: 'test url'}
+    assert_redirected_to :controller => "organisations", :action => "index", :notice => "New organisation created"
+  end
 end
