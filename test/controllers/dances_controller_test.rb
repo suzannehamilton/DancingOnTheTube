@@ -17,4 +17,9 @@ class DancesControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal dances(:salsa), assigns(:dance)
   end
+
+  test "new should be a valid page" do
+    get :new
+    assert_response :success
+  end
 end
