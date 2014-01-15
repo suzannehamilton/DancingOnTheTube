@@ -26,4 +26,11 @@ class OrganisationsControllerTest < ActionController::TestCase
     post :create, organisation: {name: 'Test name', url: 'test url'}
     assert_redirected_to :controller => "organisations", :action => "index", :notice => "New organisation created"
   end
+
+  test "invalid create should re-render creation form" do
+    skip
+    post :create, organisation: {name: '', url: ''}
+    assert_response :success
+    assert_template :new
+  end
 end
