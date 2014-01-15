@@ -22,4 +22,10 @@ class DancesControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
+
+  test "create should create a new dance" do
+    assert_difference('Dance.count') do
+      post :create, dance: {name: 'Test name'}
+    end
+  end
 end
