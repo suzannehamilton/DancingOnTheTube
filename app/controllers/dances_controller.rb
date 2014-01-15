@@ -9,7 +9,7 @@ class DancesController < ApplicationController
   def create
     @dance = Dance.new(post_params)
     @dance.save
-    redirect_to @dance
+    redirect_to action: :index, :notice => "New dance created"
   end
 
   def edit

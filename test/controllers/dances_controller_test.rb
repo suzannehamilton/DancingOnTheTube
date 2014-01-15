@@ -28,4 +28,9 @@ class DancesControllerTest < ActionController::TestCase
       post :create, dance: {name: 'Test name'}
     end
   end
+
+  test "create should redirect to dance index" do
+    post :create, dance: {name: 'Test name'}
+    assert_redirected_to :controller => "dances", :action => "index", :notice => "New dance created"
+  end
 end
