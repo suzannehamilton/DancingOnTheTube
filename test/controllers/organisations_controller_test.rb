@@ -15,4 +15,10 @@ class OrganisationsControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
+
+  test "can create a new valid organisation" do
+    assert_difference('Organisation.count') do
+      post :create, organisation: {name: 'Test name', url: 'test url'}
+    end
+  end
 end
