@@ -32,4 +32,11 @@ class OrganisationsControllerTest < ActionController::TestCase
     assert_response :success
     assert_template :new
   end
+
+  test "edit should get task for editing" do
+    get :edit, id: organisations(:salsa_org)
+
+    assert_response :success
+    assert_equal organisations(:salsa_org), assigns(:organisation)
+  end
 end

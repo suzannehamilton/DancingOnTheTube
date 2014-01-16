@@ -6,6 +6,10 @@ class OrganisationsController < ApplicationController
   def new
   end
 
+  def edit
+    @organisation = Organisation.find(params[:id])
+  end
+
   def create
     @organisation = Organisation.new(post_params)
 
