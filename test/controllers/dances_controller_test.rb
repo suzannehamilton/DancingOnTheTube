@@ -42,5 +42,20 @@ class DancesControllerTest < ActionController::TestCase
 
   test "update valid dance should save the dance" do
     post :update, id: dances(:salsa), dance: {name: "New name"}
+
+    updated_dance = Dance.find(dances(:salsa).id)
+    assert_equal "New name", updated_dance.name
+  end
+
+  test "update valid dance should redirect to dance index" do
+    post :update, id: dances(:salsa), dance: {name: "New name"}
+    Dance.find(dances(:salsa).id)
+    assert_redirected_to :controller => "dances", :action => "index", :notice => "Dance updated"
+  end
+
+  test "invalid update should re-render creation form" do
+    post :update, id: dances(:salsa), dance: {name: ""}
+    assert_response :success
+    assert_template :edit
   end
 end
