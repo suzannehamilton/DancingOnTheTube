@@ -1,12 +1,3 @@
 <h1>New Dance</h1>
 
-<%= form_for :dance, url: dances_path do |f| %>
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<%= render partial: "form", locals: {dance: @dance} %>

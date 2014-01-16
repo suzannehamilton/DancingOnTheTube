@@ -4,6 +4,7 @@ class DancesController < ApplicationController
   end
 
   def new
+    @dance = Dance.new
   end
 
   def create
