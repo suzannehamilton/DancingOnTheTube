@@ -1,4 +1,12 @@
-<p>
-  <strong>Dance:</strong>
-  <%= @dance.name %>
-</p>
+<h1>Edit Dance</h1>
+
+<%= form_for :dance, url: dances_path(@dance) do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
