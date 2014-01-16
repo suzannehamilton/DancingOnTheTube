@@ -4,6 +4,6 @@
 
 <% @organisations.each do |organisation| %>
   <ul>
-    <li><%= organisation.name %></li>
+    <li><%= organisation.name %> <%= link_to 'Edit', edit_organisation_path(organisation) %></li>
   </ul>
 <% end %>

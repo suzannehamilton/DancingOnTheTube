@@ -4,6 +4,6 @@
 
 <% @dances.each do |dance| %>
   <ul>
-    <li><%= dance.name %></li>
+    <li><%= dance.name %> <%= link_to 'Edit', edit_dance_path(dance) %></li>
   </ul>
 <% end %>
