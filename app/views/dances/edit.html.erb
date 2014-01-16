@@ -1,6 +1,6 @@
 <h1>Edit Dance</h1>
 
-<%= form_for :dance, url: dances_path(@dance) do |f| %>
+<%= form_for :dance, url: dance_path(@dance), method: :patch do |f| %>
   <p>
     <%= f.label :name %><br>
     <%= f.text_field :name %>

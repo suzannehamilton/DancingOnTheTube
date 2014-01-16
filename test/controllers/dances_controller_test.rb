@@ -39,4 +39,8 @@ class DancesControllerTest < ActionController::TestCase
     assert_response :success
     assert_template :new
   end
+
+  test "update valid dance should save the dance" do
+    post :update, id: dances(:salsa), dance: {name: "New name"}
+  end
 end

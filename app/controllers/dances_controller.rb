@@ -16,6 +16,10 @@ class DancesController < ApplicationController
     end
   end
 
+  def update
+    redirect_to action: :index, :notice => "Dance updated"
+  end
+
   def edit
     @dance = Dance.find(params[:id])
   end
