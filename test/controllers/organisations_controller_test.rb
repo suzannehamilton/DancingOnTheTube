@@ -52,4 +52,10 @@ class OrganisationsControllerTest < ActionController::TestCase
     Organisation.find(organisations(:salsa_org).id)
     assert_redirected_to :controller => "organisations", :action => "index", :notice => "Organisation updated"
   end
+
+  test "invalid update should re-render creation form" do
+    post :update, id: organisations(:salsa_org), organisation: {name: ""}
+    assert_response :success
+    assert_template :edit
+  end
 end
