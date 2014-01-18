@@ -11,6 +11,13 @@ class OrganisationsController < ApplicationController
     @organisation = Organisation.find(params[:id])
   end
 
+  def update
+    @organisation = Organisation.find(params[:id])
+
+    @organisation.update(post_params)
+    redirect_to action: :index
+  end
+
   def create
     @organisation = Organisation.new(post_params)
 

@@ -39,4 +39,11 @@ class OrganisationsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal organisations(:salsa_org), assigns(:organisation)
   end
+
+  test "update valid organisation should save the organisation" do
+    post :update, id: organisations(:salsa_org), organisation: {name: "New name", url: 'new url'}
+
+    updated_organisation = Organisation.find(organisations(:salsa_org).id)
+    assert_equal "New name", updated_organisation.name
+  end
 end
