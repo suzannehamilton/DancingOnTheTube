@@ -4,6 +4,7 @@ class OrganisationsController < ApplicationController
   end
 
   def new
+      @organisation = Organisation.new
   end
 
   def edit
