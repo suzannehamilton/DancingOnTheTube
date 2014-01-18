@@ -46,4 +46,10 @@ class OrganisationsControllerTest < ActionController::TestCase
     updated_organisation = Organisation.find(organisations(:salsa_org).id)
     assert_equal "New name", updated_organisation.name
   end
+
+  test "update valid organisation should redirect to organisation index" do
+    post :update, id: organisations(:salsa_org), organisation: {name: "New name", url: 'new url'}
+    Organisation.find(organisations(:salsa_org).id)
+    assert_redirected_to :controller => "organisations", :action => "index", :notice => "Organisation updated"
+  end
 end
