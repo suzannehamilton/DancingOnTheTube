@@ -4,6 +4,8 @@
 
 <% @dances.each do |dance| %>
   <ul>
-    <li><%= dance.name %> <%= link_to 'Edit', edit_dance_path(dance) %></li>
+    <li>
+      <%= dance.name %> <%= link_to 'Edit', edit_dance_path(dance) %> <%= link_to 'Delete', dance_path(dance), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
   </ul>
 <% end %>
