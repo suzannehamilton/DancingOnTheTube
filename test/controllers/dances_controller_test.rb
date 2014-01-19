@@ -58,4 +58,10 @@ class DancesControllerTest < ActionController::TestCase
     assert_response :success
     assert_template :edit
   end
+
+  test "deletion redirects to index page" do
+    post :destroy, id: dances(:salsa)
+
+    assert_redirected_to :controller => "dances", :action => "index", :notice => "Dance deleted"
+  end
 end

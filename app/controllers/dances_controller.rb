@@ -31,6 +31,12 @@ class DancesController < ApplicationController
     @dance = Dance.find(params[:id])
   end
 
+  def destroy
+    @dance = Dance.find(params[:id])
+
+    redirect_to action: :index, :notice => "Dance deleted"
+  end
+
   private
     def post_params
       params.require(:dance).permit(:name)
