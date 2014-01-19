@@ -64,4 +64,12 @@ class DancesControllerTest < ActionController::TestCase
 
     assert_redirected_to :controller => "dances", :action => "index", :notice => "Dance deleted"
   end
+
+  test "can delete a dance" do
+    assert_difference('Dance.count', -1) do
+      post :destroy, id: dances(:salsa)
+    end
+
+    assert_not Dance.exists?(dances(:salsa).id)
+  end
 end

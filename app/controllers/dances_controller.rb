@@ -33,6 +33,7 @@ class DancesController < ApplicationController
 
   def destroy
     @dance = Dance.find(params[:id])
+    @dance.destroy
 
     redirect_to action: :index, :notice => "Dance deleted"
   end

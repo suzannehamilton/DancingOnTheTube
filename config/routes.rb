@@ -6,6 +6,7 @@ Dott::Application.routes.draw do
   root 'welcome#index'
 
   resources :dances
+  # DELETE /dances/:id(.:format)      dances#destroy
 
   resources :organisations
 
