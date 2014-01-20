@@ -58,4 +58,18 @@ class OrganisationsControllerTest < ActionController::TestCase
     assert_response :success
     assert_template :edit
   end
+
+  test "deletion redirects to index page" do
+    post :destroy, id: organisations(:salsa_org)
+
+    assert_redirected_to :controller => "organisations", :action => "index", :notice => "Organisation deleted"
+  end
+
+  test "can delete an organisation" do
+    assert_difference('Organisation.count', -1) do
+      post :destroy, id: organisations(:salsa_org)
+    end
+
+    assert_not Organisation.exists?(organisations(:salsa_org).id)
+  end
 end

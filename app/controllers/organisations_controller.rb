@@ -31,6 +31,13 @@ class OrganisationsController < ApplicationController
     end
   end
 
+  def destroy
+    @organisation = Organisation.find(params[:id])
+    @organisation.destroy
+
+    redirect_to action: :index, :notice => "Organisation deleted"
+  end
+
   private
     def post_params
       params.require(:organisation).permit(:name, :url)
