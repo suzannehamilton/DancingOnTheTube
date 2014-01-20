@@ -8,6 +8,16 @@
     <%= f.text_field :url %>
   </p>
 
+  <div class="form-group">
+    <select multiple class="form-control">
+      <% for dance in Dance.all %>
+        <option>
+          <%= dance.name %>
+        </option>
+      <% end %>
+    </select>
+  </div>
+
   <p>
     <%= f.submit %>
   </p>
