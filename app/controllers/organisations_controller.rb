@@ -40,6 +40,6 @@ class OrganisationsController < ApplicationController
 
   private
     def post_params
-      params.require(:organisation).permit(:name, :url)
+      params.require(:organisation).permit(:name, :url, :dance_ids => [])
     end
 end

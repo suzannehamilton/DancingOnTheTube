@@ -53,6 +53,13 @@ class OrganisationsControllerTest < ActionController::TestCase
     assert_redirected_to :controller => "organisations", :action => "index", :notice => "Organisation updated"
   end
 
+  test "can save associated dances" do
+    post :update, id: organisations(:salsa_org), organisation: {name: "New name", url: 'new url', dance_ids: [dances(:west_coast_swing)]}
+
+    updated_organisation = Organisation.find(organisations(:salsa_org).id)
+    assert updated_organisation.dances.include? dances(:west_coast_swing)
+  end
+
   test "invalid update should re-render creation form" do
     post :update, id: organisations(:salsa_org), organisation: {name: ""}
     assert_response :success
