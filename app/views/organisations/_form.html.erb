@@ -9,13 +9,7 @@
   </p>
 
   <div class="form-group">
-    <select multiple class="form-control">
-      <% for dance in Dance.all %>
-        <option>
-          <%= dance.name %>
-        </option>
-      <% end %>
-    </select>
+    <%= f.select :dance_ids, Dance.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
   </div>
 
   <p>
