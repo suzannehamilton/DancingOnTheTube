@@ -4,6 +4,8 @@
 
 <% @organisations.each do |organisation| %>
   <ul>
-    <li><%= organisation.name %> <%= link_to 'Edit', edit_organisation_path(organisation) %></li>
+    <li>
+      <%= organisation.name %> <%= link_to 'Edit', edit_organisation_path(organisation) %> <%= link_to 'Delete', organisation_path(organisation), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
   </ul>
 <% end %>
