@@ -8,9 +8,7 @@ class NavHelperTest < ActionView::TestCase
   end
 
   test "tab for current page is active" do
-    def self.current_page?(path)
-      true
-    end
+    request.path = root_path
 
     assert_equal('<li class="active"><a href="/">Home</a></li>', nav_link('Home', root_path))
   end
