@@ -4,6 +4,7 @@ class EventTest < ActiveSupport::TestCase
   test "should save valid event" do
     event = Event.new
     event.name = "New event"
+    event.start_date = Date.parse('2014-01-01')
     assert event.save, "Did not save event"
   end
 
