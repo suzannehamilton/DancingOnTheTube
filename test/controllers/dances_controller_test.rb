@@ -11,7 +11,7 @@ class DancesControllerTest < ActionController::TestCase
     assert_not_nil listed_dances
   end
 
-  test "edit should get task for editing" do
+  test "edit should get dance for editing" do
     get :edit, id: dances(:salsa)
 
     assert_response :success
