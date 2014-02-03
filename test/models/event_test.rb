@@ -10,6 +10,13 @@ class EventTest < ActiveSupport::TestCase
 
   test "event without name is invalid" do
     event = Event.new
+    event.start_date = Date.parse('2014-01-01')
     refute event.save, "Saved a event without a name"
+  end
+
+  test "event without date is invalid" do
+    event = Event.new
+    event.name = "New event"
+    refute event.save, "Saved a event without a start date"
   end
 end
