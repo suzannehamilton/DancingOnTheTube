@@ -4,8 +4,11 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(post_params)
-    @event.save
-    redirect_to action: :index, controller: :organisations
+    if @event.save
+      redirect_to action: :index, controller: :organisations
+    else
+      render 'new'
+    end
   end
 
   private

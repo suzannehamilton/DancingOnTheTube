@@ -11,4 +11,10 @@ class EventsControllerTest < ActionController::TestCase
       post :create, event: {name: 'Test name', start_date: '2014-01-01'}
     end
   end
+
+  test "invalid create should re-render creation form" do
+    post :create, event: {name: nil}
+    assert_response :success
+    assert_template :new
+  end
 end
