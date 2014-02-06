@@ -5,7 +5,9 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(post_params)
     if @event.save
-      redirect_to action: :index, controller: :organisations
+      redirect_to action: :index,
+        controller: :organisations,
+        notice: "New event created for organisation: " + Organisation.find(params[:organisation_id]).name
     else
       render 'new'
     end
@@ -13,6 +15,6 @@ class EventsController < ApplicationController
 
   private
   def post_params
-    params.require(:event).permit(:name, :start_date)
+    params.require(:event).permit(:name, :start_date, :organisation_id)
   end
 end

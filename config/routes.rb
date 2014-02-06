@@ -8,8 +8,9 @@ Dott::Application.routes.draw do
   resources :dances
   # DELETE /dances/:id(.:format)      dances#destroy
 
-  resources :organisations
-  resources :events
+  resources :organisations do
+    resources :events
+  end
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
