@@ -40,6 +40,14 @@ class OrganisationsControllerTest < ActionController::TestCase
     assert_equal organisations(:salsa_org), assigns(:organisation)
   end
 
+  test "edit page lists associated events" do
+    get :edit, id: organisations(:salsa_org)
+
+    actual_events = assigns(:events)
+    assert_equal organisations(:salsa_org).events, actual_events
+    assert actual_events.include? events(:salsa_event)
+  end
+
   test "update valid organisation should save the organisation" do
     post :update, id: organisations(:salsa_org), organisation: {name: "New name", url: 'new url'}
 
