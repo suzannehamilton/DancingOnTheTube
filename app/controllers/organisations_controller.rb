@@ -10,7 +10,6 @@ class OrganisationsController < ApplicationController
   def edit
     organisation_id = params[:id]
     @organisation = Organisation.find(organisation_id)
-    @events = Event.where(organisation_id: organisation_id)
   end
 
   def update

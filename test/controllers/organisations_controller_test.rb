@@ -43,7 +43,7 @@ class OrganisationsControllerTest < ActionController::TestCase
   test "edit page lists associated events" do
     get :edit, id: organisations(:salsa_org)
 
-    actual_events = assigns(:events)
+    actual_events = assigns(:organisation).events
     assert_equal organisations(:salsa_org).events, actual_events
     assert actual_events.include? events(:salsa_event)
   end
