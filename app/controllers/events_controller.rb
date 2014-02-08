@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   def new
+    @event = Event.new
+    @organisation = Organisation.find(params[:organisation_id])
   end
 
   def create
