@@ -2,10 +2,10 @@
 
 <%= link_to 'New organisation', new_organisation_path %>
 
-<% @organisations.each do |organisation| %>
-  <ul>
+<ul>
+  <% @organisations.each do |organisation| %>
     <li>
       <%= organisation.name %> <%= link_to 'Edit', edit_organisation_path(organisation) %> <%= link_to 'Delete', organisation_path(organisation), method: :delete, data: { confirm: 'Are you sure?' } %>
     </li>
-  </ul>
-<% end %>
+  <% end %>
+</ul>
