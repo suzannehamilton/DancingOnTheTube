@@ -1,16 +1,18 @@
 class EventsController < ApplicationController
   def new
     @event = Event.new
-    @organisation = Organisation.find(params[:organisation_id])
+    @organisation = @organisation
   end
 
   def create
     @event = Event.new(post_params)
-    @event.organisation = Organisation.find(params[:organisation_id])
+    @organisation = Organisation.find(params[:organisation_id])
+    @event.organisation = @organisation
+
     if @event.save
       redirect_to action: :index,
         controller: :organisations,
-        notice: "New event created for organisation: " + Organisation.find(params[:organisation_id]).name
+        notice: "New event created for organisation: " + @organisation.name
     else
       render 'new'
     end
