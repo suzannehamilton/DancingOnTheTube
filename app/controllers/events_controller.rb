@@ -6,6 +6,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(post_params)
+    @event.organisation = Organisation.find(params[:organisation_id])
     if @event.save
       redirect_to action: :index,
         controller: :organisations,
