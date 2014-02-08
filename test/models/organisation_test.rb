@@ -55,4 +55,10 @@ class OrganisationTest < ActiveSupport::TestCase
     assert dances.include? dances(:salsa)
     assert dances.include? dances(:bachata)
   end
+
+  test "has associated events" do
+    events = organisations(:salsa_org).events
+
+    assert events.include? events(:salsa_event)
+  end
 end

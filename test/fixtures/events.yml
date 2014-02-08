@@ -1,7 +1,4 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  organisation_id: 
-
-two:
-  organisation_id: 
+salsa_event:
+  organisation: :salsa_org
+  name: Salsa event
+  start_date: 2014-01-01
