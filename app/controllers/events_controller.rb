@@ -22,6 +22,15 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+  def update
+    @event = Event.find(params[:id])
+
+    @event.update(post_params)
+
+    redirect_to action: :index,
+        controller: :organisations
+  end
+
   private
   def post_params
     params.require(:event).permit(:name, :start_date, :organisation_id)

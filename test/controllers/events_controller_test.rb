@@ -35,4 +35,17 @@ class EventsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal events(:salsa_event), assigns(:event)
   end
+
+  test "updating a valid event saves the event" do
+    new_name = "New name"
+    new_start_date = "2014-03-09"
+    post :update,
+      id: events(:salsa_event),
+      organisation_id: organisations(:salsa_org),
+      event: {name: new_name, start_date: new_start_date}
+
+    updated_event = Event.find(events(:salsa_event).id)
+    assert_equal new_name, updated_event.name
+    assert_equal Date.parse(new_start_date), updated_event.start_date
+  end
 end
