@@ -50,6 +50,18 @@ class EventsControllerTest < ActionController::TestCase
     assert_equal Date.parse(new_start_date), updated_event.start_date
   end
 
+  test "updating a valid event redirects to organisation edit page" do
+    event_name = "New name"
+
+    post :update,
+      id: events(:salsa_event),
+      organisation_id: organisations(:salsa_org),
+      event: {name: event_name, start_date: "2014-03-09"}
+
+    assert_redirected_to edit_organisation_path(organisations(:salsa_org),
+      :notice => "Event updated: " + event_name)
+  end
+
   test "invalid update re-renders edit form" do
     post :update,
       id: events(:salsa_event),

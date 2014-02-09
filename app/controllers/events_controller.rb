@@ -12,8 +12,7 @@ class EventsController < ApplicationController
     @event.organisation = @organisation
 
     if @event.save
-      redirect_to edit_organisation_path(organisation_id,
-        notice: "New event created: " + @event.name)
+      redirect_to edit_organisation_path(organisation_id, notice: "New event created: " + @event.name)
     else
       render 'new'
     end
@@ -27,8 +26,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     if @event.update(post_params)
-      redirect_to action: :index,
-        controller: :organisations
+      redirect_to edit_organisation_path(@event.organisation, notice: "Event updated: " + @event.name)
     else
       render 'edit'
     end
