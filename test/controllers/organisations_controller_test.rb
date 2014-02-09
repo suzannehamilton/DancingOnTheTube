@@ -68,7 +68,7 @@ class OrganisationsControllerTest < ActionController::TestCase
     assert updated_organisation.dances.include? dances(:west_coast_swing)
   end
 
-  test "invalid update should re-render creation form" do
+  test "invalid update should re-render edit form" do
     post :update, id: organisations(:salsa_org), organisation: {name: ""}
     assert_response :success
     assert_template :edit
