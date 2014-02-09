@@ -10,9 +10,8 @@ class EventsController < ApplicationController
     @event.organisation = @organisation
 
     if @event.save
-      redirect_to action: :index,
-        controller: :organisations,
-        notice: "New event created for organisation: " + @organisation.name
+      redirect_to edit_organisation_path(params[:organisation_id],
+        notice: "New event created: " + @event.name)
     else
       render 'new'
     end

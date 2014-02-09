@@ -20,13 +20,14 @@ class EventsControllerTest < ActionController::TestCase
     assert_template :new
   end
 
-  test "create should redirect to related organisation index" do
+  test "create should redirect to related organisation edit page" do
+    event_name = "Test name"
+
     post :create,
       organisation_id: organisations(:salsa_org),
-      event: {name: 'Test name', start_date: '2014-01-01'}
-    assert_redirected_to :controller => "organisations",
-      :action => "index",
-      :notice => ("New event created for organisation: " + organisations(:salsa_org).name)
+      event: {name: event_name, start_date: '2014-01-01'}
+    assert_redirected_to edit_organisation_path(organisations(:salsa_org),
+      :notice => "New event created: " + event_name)
   end
 
   test "edit path gets event for editing" do
