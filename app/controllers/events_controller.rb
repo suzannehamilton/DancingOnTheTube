@@ -37,9 +37,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
 
-    redirect_to action: :edit,
-      controller: :organisations,
-      notice: "Deleted event: " + @event.name
+    redirect_to edit_organisation_path(params[:organisation_id], :notice => "Deleted event: " + @event.name)
   end
 
   private
