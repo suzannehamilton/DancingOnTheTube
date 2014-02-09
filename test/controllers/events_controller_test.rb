@@ -48,4 +48,13 @@ class EventsControllerTest < ActionController::TestCase
     assert_equal new_name, updated_event.name
     assert_equal Date.parse(new_start_date), updated_event.start_date
   end
+
+  test "invalid update re-renders edit form" do
+    post :update,
+      id: events(:salsa_event),
+      organisation_id: organisations(:salsa_org),
+      event: {name: ""}
+    assert_response :success
+    assert_template :edit
+  end
 end

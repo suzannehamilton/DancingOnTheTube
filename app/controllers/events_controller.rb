@@ -25,10 +25,12 @@ class EventsController < ApplicationController
   def update
     @event = Event.find(params[:id])
 
-    @event.update(post_params)
-
-    redirect_to action: :index,
+    if @event.update(post_params)
+      redirect_to action: :index,
         controller: :organisations
+    else
+      render 'edit'
+    end
   end
 
   private
