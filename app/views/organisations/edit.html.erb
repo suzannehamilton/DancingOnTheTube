@@ -6,7 +6,7 @@
 <ul>
   <% @organisation.events.each do |event| %>
     <li>
-      <%= event.name %>
+      <%= event.name %> <%= link_to 'Edit', edit_organisation_event_path(@organisation, event) %>
     </li>
   <% end %>
 </ul>
