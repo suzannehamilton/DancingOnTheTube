@@ -28,4 +28,11 @@ class EventsControllerTest < ActionController::TestCase
       :action => "index",
       :notice => ("New event created for organisation: " + organisations(:salsa_org).name)
   end
+
+  test "edit path gets event for editing" do
+    get :edit, id: events(:salsa_event), organisation_id: organisations(:salsa_org)
+
+    assert_response :success
+    assert_equal events(:salsa_event), assigns(:event)
+  end
 end

@@ -18,6 +18,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+    @event = Event.find(params[:id])
+  end
+
   private
   def post_params
     params.require(:event).permit(:name, :start_date, :organisation_id)
