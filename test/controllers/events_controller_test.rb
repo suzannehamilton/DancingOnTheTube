@@ -57,4 +57,12 @@ class EventsControllerTest < ActionController::TestCase
     assert_response :success
     assert_template :edit
   end
+
+  test "delete path deletes an event" do
+    assert_difference('Event.count', -1) do
+      post :destroy, id: events(:salsa_event), organisation_id: organisations(:salsa_org)
+    end
+
+    assert_not Event.exists?(events(:salsa_event).id)
+  end
 end
