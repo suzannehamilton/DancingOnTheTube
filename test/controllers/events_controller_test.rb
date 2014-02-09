@@ -65,4 +65,11 @@ class EventsControllerTest < ActionController::TestCase
 
     assert_not Event.exists?(events(:salsa_event).id)
   end
+
+  test "deletion redirects to organisation edit page" do
+    event_to_be_deleted = events(:salsa_event)
+    post :destroy, id: event_to_be_deleted, organisation_id: organisations(:salsa_org)
+
+    assert_redirected_to :controller => "organisations", :action => "edit", :notice => "Deleted event: " + event_to_be_deleted.name
+  end
 end
