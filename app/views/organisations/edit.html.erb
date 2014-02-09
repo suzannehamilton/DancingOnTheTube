@@ -6,7 +6,9 @@
 <ul>
   <% @organisation.events.each do |event| %>
     <li>
-      <%= event.name %> <%= link_to 'Edit', edit_organisation_event_path(@organisation, event) %>
+      <%= event.name %>
+      <%= link_to 'Edit', edit_organisation_event_path(@organisation, event) %>
+      <%= link_to 'Delete', organisation_event_path(@organisation, event), method: :delete, data: { confirm: 'Are you sure?' } %>
     </li>
   <% end %>
 </ul>
