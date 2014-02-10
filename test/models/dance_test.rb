@@ -24,9 +24,7 @@ class DanceTest < ActiveSupport::TestCase
     refute dance.save, "Saved a dance with duplicate name"
   end
 
-  test "dances should be listed alphabetically by name" do
-    dances = Dance.all
-
-    assert_equal [dances(:bachata), dances(:salsa), dances(:west_coast_swing)], dances
+  test "dances are listed alphabetically by name" do
+    assert_equal [dances(:bachata), dances(:salsa), dances(:west_coast_swing)], Dance.all
   end
 end
