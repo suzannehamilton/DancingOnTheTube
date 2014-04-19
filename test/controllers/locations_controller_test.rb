@@ -10,4 +10,9 @@ class LocationsControllerTest < ActionController::TestCase
     assert listed_locations.include?(locations(:town_hall))
     assert_not_nil listed_locations
   end
+
+  test "new should be a valid page" do
+    get :new
+    assert_response :success
+  end
 end
