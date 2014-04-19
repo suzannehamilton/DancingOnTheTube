@@ -15,4 +15,15 @@ class LocationsControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
+
+  test "create should create a new location" do
+    assert_difference('Location.count') do
+      post :create, location: {name: 'Test name', longitude: 0.5, latitude: -0.5}
+    end
+  end
+
+  test "create should redirect to location index" do
+    post :create, location: {name: 'Test name'}
+    assert_redirected_to :controller => "locations", :action => "index", :notice => "New location created"
+  end
 end
