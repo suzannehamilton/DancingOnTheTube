@@ -5,7 +5,7 @@
 <% @locations.each do |location| %>
   <ul>
     <li>
-      <%= location.name %>
+      <%= location.name %> <%= link_to 'Edit', edit_location_path(location) %>
     </li>
   </ul>
 <% end %>
