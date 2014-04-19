@@ -32,4 +32,11 @@ class LocationsControllerTest < ActionController::TestCase
     assert_response :success
     assert_template :new
   end
+
+  test "edit should get location for editing" do
+    get :edit, id: locations(:town_hall)
+
+    assert_response :success
+    assert_equal locations(:town_hall), assigns(:location)
+  end
 end
