@@ -23,7 +23,13 @@ class LocationsControllerTest < ActionController::TestCase
   end
 
   test "create should redirect to location index" do
-    post :create, location: {name: 'Test name'}
+    post :create, location: {name: 'Test name', longitude: 0.5, latitude: -0.5}
     assert_redirected_to :controller => "locations", :action => "index", :notice => "New location created"
+  end
+
+  test "invalid create should re-render creation form" do
+    post :create, location: {name: nil}
+    assert_response :success
+    assert_template :new
   end
 end

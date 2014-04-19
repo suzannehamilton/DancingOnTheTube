@@ -10,8 +10,11 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(post_params)
 
-    @location.save
-    redirect_to action: :index, :notice => "New location created"
+    if @location.save
+      redirect_to action: :index, :notice => "New location created"
+    else
+      render 'new'
+    end
   end
 
   private
