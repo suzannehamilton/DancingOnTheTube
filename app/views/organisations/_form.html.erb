@@ -13,6 +13,11 @@
     <%= f.select :dance_ids, Dance.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :locations %><br>
+    <%= f.select :location_ids, Location.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+  </div>
+
   <p>
     <%= f.submit %>
   </p>
