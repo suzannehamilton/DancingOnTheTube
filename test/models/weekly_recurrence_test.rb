@@ -25,4 +25,22 @@ class WeeklyRecurrenceTest < ActiveSupport::TestCase
 
     refute recurrence.save, "Saved an invalid recurrence that was not tied to a day of the week"
   end
+
+  test "a negative day of the week is invalid" do
+    recurrence = WeeklyRecurrence.new
+    recurrence.frequency = 1
+    recurrence.day_of_week = -1
+    recurrence.event = events(:salsa_event)
+
+    refute recurrence.save, "Saved an invalid recurrence with a negative day of the week"
+  end
+
+  test "a day of the week of 7 or greater is invalid" do
+    recurrence = WeeklyRecurrence.new
+    recurrence.frequency = 1
+    recurrence.day_of_week = 7
+    recurrence.event = events(:salsa_event)
+
+    refute recurrence.save, "Saved an invalid recurrence with an out-of-range day of the week"
+  end
 end
