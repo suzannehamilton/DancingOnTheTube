@@ -36,14 +36,16 @@ class EventsControllerTest < ActionController::TestCase
       :notice => "New event created: " + event_name)
   end
 
-  # test "can save a new recurring event" do
-  #   assert_difference('Event.count') do
-  #     # Also assert difference in recurrence count
-  #     post :create,
-  #       organisation_id: organisations(:salsa_org),
-  #       event: {name: 'Test name'}
-  #   end
-  # end
+  test "can save a new recurring event" do
+    skip
+    assert_difference('Event.count') do
+      assert_difference('WeeklyRecurrence.count') do
+        post :create,
+          organisation_id: organisations(:salsa_org),
+          event: {name: 'Test name', weekly_recurrence: {day_of_week: 2, frequency: 2}}
+      end
+    end
+  end
 
   test "edit path gets event for editing" do
     get :edit, id: events(:salsa_event), organisation_id: organisations(:salsa_org)

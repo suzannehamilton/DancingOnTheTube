@@ -1,11 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  event_id:
-  day_of_week: 1
-  frequency: 1
-
-two:
-  event_id:
+salsa_event_recurrence:
+  event: :salsa_event
   day_of_week: 1
   frequency: 1
