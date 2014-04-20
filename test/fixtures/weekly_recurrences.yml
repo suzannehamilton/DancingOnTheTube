@@ -1,13 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  event_id: 
+  event_id:
   day_of_week: 1
   frequency: 1
-  end_date: 2014-02-10
 
 two:
-  event_id: 
+  event_id:
   day_of_week: 1
   frequency: 1
-  end_date: 2014-02-10
