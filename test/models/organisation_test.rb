@@ -56,6 +56,13 @@ class OrganisationTest < ActiveSupport::TestCase
     assert dances.include? dances(:bachata)
   end
 
+  test "has associated locations" do
+    locations = organisations(:salsa_org).locations
+
+    assert locations.include? locations(:town_hall)
+    assert locations.include? locations(:bandstand)
+  end
+
   test "organisations are listed alphabetically by name" do
     assert_equal [organisations(:salsa_org), organisations(:west_coast_swing_org)], Organisation.all
   end

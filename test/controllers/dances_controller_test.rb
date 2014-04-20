@@ -53,7 +53,7 @@ class DancesControllerTest < ActionController::TestCase
     assert_redirected_to :controller => "dances", :action => "index", :notice => "Dance updated"
   end
 
-  test "invalid update should re-render creation form" do
+  test "invalid update should re-render edit form" do
     post :update, id: dances(:salsa), dance: {name: ""}
     assert_response :success
     assert_template :edit
