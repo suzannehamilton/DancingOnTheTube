@@ -21,6 +21,16 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
   end
 
+  def update
+    @location = Location.find(params[:id])
+
+    if @location.update(post_params)
+      redirect_to action: :index, :notice => "Location updated"
+    else
+      render 'edit'
+    end
+  end
+
   private
     def post_params
       params.require(:location).permit(:name, :latitude, :longitude)

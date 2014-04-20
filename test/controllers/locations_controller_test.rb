@@ -39,4 +39,25 @@ class LocationsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal locations(:town_hall), assigns(:location)
   end
+
+  test "updating a valid location should save the location" do
+    post :update, id: locations(:town_hall), location: {name: "New name", latitude: 50, longitude: -50}
+
+    updated_location = Location.find(locations(:town_hall).id)
+    assert_equal "New name", updated_location.name
+    assert_equal 50, updated_location.latitude
+    assert_equal -50, updated_location.longitude
+  end
+
+  test "update valid location should redirect to location index" do
+    post :update, id: locations(:town_hall), location: {name: "New name"}
+    Location.find(locations(:town_hall).id)
+    assert_redirected_to :controller => "locations", :action => "index", :notice => "Location updated"
+  end
+
+  test "invalid update should re-render edit form" do
+    post :update, id: locations(:town_hall), location: {name: ""}
+    assert_response :success
+    assert_template :edit
+  end
 end
