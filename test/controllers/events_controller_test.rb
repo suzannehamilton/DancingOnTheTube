@@ -4,6 +4,7 @@ class EventsControllerTest < ActionController::TestCase
   test "new should be a valid page" do
     get :new, organisation_id: organisations(:salsa_org)
     assert_response :success
+    assert_not_nil assigns(:event)
   end
 
   test "create should create a new event" do
@@ -29,6 +30,15 @@ class EventsControllerTest < ActionController::TestCase
     assert_redirected_to edit_organisation_path(organisations(:salsa_org),
       :notice => "New event created: " + event_name)
   end
+
+  # test "can save a new recurring event" do
+  #   assert_difference('Event.count') do
+  #     # Also assert difference in recurrence count
+  #     post :create,
+  #       organisation_id: organisations(:salsa_org),
+  #       event: {name: 'Test name'}
+  #   end
+  # end
 
   test "edit path gets event for editing" do
     get :edit, id: events(:salsa_event), organisation_id: organisations(:salsa_org)
