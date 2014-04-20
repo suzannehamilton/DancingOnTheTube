@@ -31,6 +31,13 @@ class LocationsController < ApplicationController
     end
   end
 
+  def destroy
+    @location = Location.find(params[:id])
+    @location.destroy
+
+    redirect_to action: :index, :notice => "Location deleted"
+  end
+
   private
     def post_params
       params.require(:location).permit(:name, :latitude, :longitude)

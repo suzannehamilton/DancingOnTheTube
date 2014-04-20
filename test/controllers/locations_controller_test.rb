@@ -60,4 +60,18 @@ class LocationsControllerTest < ActionController::TestCase
     assert_response :success
     assert_template :edit
   end
+
+  test "deletion redirects to index page" do
+    post :destroy, id: locations(:town_hall)
+
+    assert_redirected_to :controller => "locations", :action => "index", :notice => "Location deleted"
+  end
+
+  test "can delete a location" do
+    assert_difference('Location.count', -1) do
+      post :destroy, id: locations(:town_hall)
+    end
+
+    assert_not Location.exists?(locations(:town_hall).id)
+  end
 end
