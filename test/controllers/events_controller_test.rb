@@ -7,6 +7,11 @@ class EventsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:event)
   end
 
+  test "new should create a new recurrence to edit" do
+    get :new, organisation_id: organisations(:salsa_org)
+    assert_not_nil assigns(:weekly_recurrence)
+  end
+
   test "create should create a new event" do
     assert_difference('Event.count') do
       post :create,

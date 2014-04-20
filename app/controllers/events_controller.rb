@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @organisation = Organisation.find(params[:organisation_id])
+    @weekly_recurrence = @event.build_weekly_recurrence
   end
 
   def create
