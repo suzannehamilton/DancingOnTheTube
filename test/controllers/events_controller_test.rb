@@ -10,7 +10,7 @@ class EventsControllerTest < ActionController::TestCase
     assert_difference('Event.count') do
       post :create,
         organisation_id: organisations(:salsa_org),
-        event: {name: 'Test name', start_date: '2014-01-01'}
+        event: {name: 'Test name'}
     end
   end
 
@@ -25,7 +25,7 @@ class EventsControllerTest < ActionController::TestCase
 
     post :create,
       organisation_id: organisations(:salsa_org),
-      event: {name: event_name, start_date: '2014-01-01'}
+      event: {name: event_name}
     assert_redirected_to edit_organisation_path(organisations(:salsa_org),
       :notice => "New event created: " + event_name)
   end
@@ -39,15 +39,13 @@ class EventsControllerTest < ActionController::TestCase
 
   test "updating a valid event saves the event" do
     new_name = "New name"
-    new_start_date = "2014-03-09"
     post :update,
       id: events(:salsa_event),
       organisation_id: organisations(:salsa_org),
-      event: {name: new_name, start_date: new_start_date}
+      event: {name: new_name}
 
     updated_event = Event.find(events(:salsa_event).id)
     assert_equal new_name, updated_event.name
-    assert_equal Date.parse(new_start_date), updated_event.start_date
   end
 
   test "updating a valid event redirects to organisation edit page" do
@@ -56,7 +54,7 @@ class EventsControllerTest < ActionController::TestCase
     post :update,
       id: events(:salsa_event),
       organisation_id: organisations(:salsa_org),
-      event: {name: event_name, start_date: "2014-03-09"}
+      event: {name: event_name}
 
     assert_redirected_to edit_organisation_path(organisations(:salsa_org),
       :notice => "Event updated: " + event_name)
