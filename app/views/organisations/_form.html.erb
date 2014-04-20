@@ -3,12 +3,13 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </p>
-    <p>
+  <p>
     <%= f.label :url %><br>
     <%= f.text_field :url %>
   </p>
 
   <div class="form-group">
+    <%= f.label :dances %><br>
     <%= f.select :dance_ids, Dance.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
   </div>
 
