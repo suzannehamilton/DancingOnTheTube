@@ -77,6 +77,22 @@ class EventsControllerTest < ActionController::TestCase
       :notice => "Event updated: " + event_name)
   end
 
+  test "updating a recurring event saves the recurrence details" do
+    post :update,
+      id: events(:salsa_event),
+      organisation_id: organisations(:salsa_org),
+      event: {
+        name: "New name",
+        weekly_recurrence_attributes: {
+          :day_of_week => 3,
+          :frequency => 42,
+          :id => weekly_recurrences(:salsa_event_recurrence).id}}
+
+    updated_event = Event.find(events(:salsa_event).id)
+    assert_equal 3, updated_event.weekly_recurrence.day_of_week
+    assert_equal 42, updated_event.weekly_recurrence.frequency
+  end
+
   test "invalid update re-renders edit form" do
     post :update,
       id: events(:salsa_event),
