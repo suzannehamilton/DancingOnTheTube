@@ -4,8 +4,8 @@
     <%= f.text_field :name %>
   </p>
 
-  <h2>Weekly recurrence</h2>
   <%= f.fields_for :weekly_recurrence do |r| %>
+    <h2>Weekly recurrence</h2>
     <p>
       <%= r.label :day_of_week %>
       <%= r.text_field :day_of_week %>
