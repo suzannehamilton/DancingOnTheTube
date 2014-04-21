@@ -69,10 +69,12 @@ class OrganisationsControllerTest < ActionController::TestCase
   end
 
   test "can save associated locations" do
-    post :update, id: organisations(:salsa_org), organisation: {name: "New name", url: 'new url', location_ids: [locations(:town_hall)]}
+    post :update,
+      id: organisations(:salsa_org),
+      organisation: {name: "New name", url: 'new url', location_ids: [locations(:ballroom)]}
 
     updated_organisation = Organisation.find(organisations(:salsa_org).id)
-    assert updated_organisation.locations.include? locations(:town_hall)
+    assert updated_organisation.locations.include? locations(:ballroom)
   end
 
   test "invalid update should re-render edit form" do

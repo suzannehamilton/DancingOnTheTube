@@ -7,3 +7,8 @@ bandstand:
   name: Bandstand in the park
   latitude: 51.5077979
   longitude: -0.1226963
+
+ballroom:
+  name: ballroom
+  latitude: 51.455209
+  longitude: -0.037112
