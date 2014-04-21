@@ -1,7 +1,7 @@
 town_hall:
   name: Town Hall
-  latitude: 1.5
-  longitude: 1.5
+  latitude: 51.491029
+  longitude: -0.265189
 
 bandstand:
   name: Bandstand in the park
@@ -9,6 +9,11 @@ bandstand:
   longitude: -0.1226963
 
 ballroom:
-  name: ballroom
+  name: Ballroom
   latitude: 51.455209
   longitude: -0.037112
+
+speakeasy:
+  name: Speakeasy swing den
+  latitude: 51.55104
+  longitude: -0.1408785
