@@ -4,6 +4,11 @@
     <%= f.text_field :name %>
   </p>
 
+  <div class="form-group">
+    <%= f.label :locations %><br>
+    <%= f.select :location_id, event.organisation.locations.collect {|x| [x.name, x.id]}, {} %>
+  </div>
+
   <%= f.fields_for :weekly_recurrence do |r| %>
     <h2>Weekly recurrence</h2>
     <p>

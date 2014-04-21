@@ -62,7 +62,8 @@ class OrganisationsControllerTest < ActionController::TestCase
   end
 
   test "can save associated dances" do
-    post :update, id: organisations(:salsa_org), organisation: {name: "New name", url: 'new url', dance_ids: [dances(:west_coast_swing)]}
+    post :update, id: organisations(:salsa_org),
+      organisation: {name: "New name", url: 'new url', dance_ids: [dances(:west_coast_swing)]}
 
     updated_organisation = Organisation.find(organisations(:salsa_org).id)
     assert updated_organisation.dances.include? dances(:west_coast_swing)
