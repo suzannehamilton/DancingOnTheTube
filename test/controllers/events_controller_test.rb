@@ -16,7 +16,7 @@ class EventsControllerTest < ActionController::TestCase
     assert_difference('Event.count') do
       post :create,
         organisation_id: organisations(:salsa_org),
-        event: {name: 'Test name'}
+        event: {name: 'Test name', location_id: locations(:ballroom)}
     end
   end
 
@@ -31,7 +31,7 @@ class EventsControllerTest < ActionController::TestCase
 
     post :create,
       organisation_id: organisations(:salsa_org),
-      event: {name: event_name}
+      event: {name: event_name, location_id: locations(:ballroom)}
     assert_redirected_to edit_organisation_path(organisations(:salsa_org),
       :notice => "New event created: " + event_name)
   end
@@ -43,6 +43,7 @@ class EventsControllerTest < ActionController::TestCase
           organisation_id: organisations(:salsa_org),
           event: {
             name: "Test name",
+            location_id: locations(:ballroom),
             weekly_recurrence_attributes: {
               :day_of_week => 2,
               :frequency => 2}}
@@ -117,6 +118,7 @@ class EventsControllerTest < ActionController::TestCase
     event_to_be_deleted = events(:salsa_event)
     post :destroy, id: event_to_be_deleted, organisation_id: organisations(:salsa_org)
 
-    assert_redirected_to edit_organisation_path(organisations(:salsa_org), :notice => "Deleted event: " + event_to_be_deleted.name)
+    assert_redirected_to edit_organisation_path(organisations(:salsa_org),
+      :notice => "Deleted event: " + event_to_be_deleted.name)
   end
 end

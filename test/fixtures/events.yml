@@ -1,3 +1,4 @@
 salsa_event:
   organisation: :salsa_org
   name: Salsa event
+  location: :bandstand

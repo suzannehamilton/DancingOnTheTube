@@ -42,6 +42,6 @@ class EventsController < ApplicationController
 
   private
   def post_params
-    params.require(:event).permit(:name, :organisation_id, :weekly_recurrence_attributes => [:id, :frequency, :day_of_week])
+    params.require(:event).permit(:name, :organisation_id, :location_id, :weekly_recurrence_attributes => [:id, :frequency, :day_of_week])
   end
 end
