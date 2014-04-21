@@ -37,12 +37,15 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   test "can save a new recurring event" do
-    skip
     assert_difference('Event.count') do
       assert_difference('WeeklyRecurrence.count') do
         post :create,
           organisation_id: organisations(:salsa_org),
-          event: {name: 'Test name', weekly_recurrence: {day_of_week: 2, frequency: 2}}
+          event: {
+            name: "Test name",
+            weekly_recurrence_attributes: {
+              :day_of_week => 2,
+              :frequency => 2}}
       end
     end
   end
