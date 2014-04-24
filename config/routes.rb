@@ -14,6 +14,7 @@ Dott::Application.routes.draw do
 
   namespace :api do
     resources :dances, only: [:index]
+    resources :events, only: [:index]
   end
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

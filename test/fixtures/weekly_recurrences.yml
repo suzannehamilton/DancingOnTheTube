@@ -2,5 +2,10 @@
 
 salsa_event_recurrence:
   event: :salsa_event
+  day_of_week: 4
+  frequency: 1
+
+wcs_event_recurrence:
+  event: :west_coast_swing_event
   day_of_week: 1
   frequency: 1
