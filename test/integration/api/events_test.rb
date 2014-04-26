@@ -12,10 +12,12 @@ class EventsTest < ActionDispatch::IntegrationTest
   end
 
   def test_get_all_events_for_today
-    event1 = create(:recurring_event, weekly_recurrence: recurrenceForDate(Date.today))
-    event2 = create(:event, weekly_recurrence: recurrenceForDate(Date.today))
-    past_event = create(:event, weekly_recurrence: recurrenceForDate(Date.yesterday))
-    future_event = create(:event, weekly_recurrence: recurrenceForDate(Date.tomorrow))
+    today = Date.today
+
+    event1 = create(:recurring_event, weekly_recurrence: recurrenceForDate(today))
+    event2 = create(:event, weekly_recurrence: recurrenceForDate(today))
+    past_event = create(:event, weekly_recurrence: recurrenceForDate(today - 1))
+    future_event = create(:event, weekly_recurrence: recurrenceForDate(today + 1))
 
     get "api/events", {}, { "Accept" => "application/json" }
     assert_equal 200, status
@@ -23,12 +25,12 @@ class EventsTest < ActionDispatch::IntegrationTest
     body = JSON.parse(response.body)
     event_organisations = body.map { |d| d["name"]}
 
-    assert_equal 2, body.length
-
     assert event_organisations.include? event1.name
     assert event_organisations.include? event2.name
     refute event_organisations.include? past_event.name
     refute event_organisations.include? future_event.name
+
+    assert_equal 2, body.length
   end
 
   def recurrenceForDate(date)
