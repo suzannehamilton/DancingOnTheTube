@@ -11,9 +11,11 @@ class EventsTest < ActionDispatch::IntegrationTest
     assert_equal [], event_organisations
   end
 
-  def test_get_all_events
-    event1 = create(:event)
-    event2 = create(:event)
+  def test_get_all_events_for_today
+    event1 = create(:recurring_event, weekly_recurrence: recurrenceForDate(Date.today))
+    event2 = create(:event, weekly_recurrence: recurrenceForDate(Date.today))
+    past_event = create(:event, weekly_recurrence: recurrenceForDate(Date.yesterday))
+    future_event = create(:event, weekly_recurrence: recurrenceForDate(Date.tomorrow))
 
     get "api/events", {}, { "Accept" => "application/json" }
     assert_equal 200, status
@@ -25,5 +27,11 @@ class EventsTest < ActionDispatch::IntegrationTest
 
     assert event_organisations.include? event1.name
     assert event_organisations.include? event2.name
+    refute event_organisations.include? past_event.name
+    refute event_organisations.include? future_event.name
+  end
+
+  def recurrenceForDate(date)
+    create(:weekly_recurrence, day_of_week: date.wday)
   end
 end
