@@ -1,9 +1,7 @@
 class EventView
-  def initialize(event)
-    @event = event
-  end
+  attr_reader :name
 
-  def name
-    @event.name
+  def initialize(event)
+    @name = event.name
   end
 end
