@@ -9,4 +9,6 @@ class Event < ActiveRecord::Base
   validates :organisation, presence: true
   validates :location, presence: true
   validates :name, presence: true
+
+  scope :today, -> { joins(:weekly_recurrence).where(weekly_recurrences: { day_of_week: Date.today.wday }) }
 end
