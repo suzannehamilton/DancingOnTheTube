@@ -12,14 +12,18 @@ class EventsTest < ActionDispatch::IntegrationTest
   end
 
   def test_get_all_events
-    skip
+    event1 = create(:event)
+    event2 = create(:event)
+
     get "api/events", {}, { "Accept" => "application/json" }
     assert_equal 200, status
 
     body = JSON.parse(response.body)
     event_organisations = body.map { |d| d["name"]}
 
-    assert event_organisations.include? events(:salsa_event).name
-    assert event_organisations.include? events(:west_coast_swing_event).name
+    assert_equal 2, body.length
+
+    assert event_organisations.include? event1.name
+    assert event_organisations.include? event2.name
   end
 end
