@@ -68,8 +68,10 @@ class OrganisationTest < ActiveSupport::TestCase
   end
 
   test "has associated events" do
-    events = organisations(:salsa_org).events
+    organisation = create(:organisation)
+    expected_event = create(:event, organisation: organisation)
+    actual_events = organisation.events
 
-    assert events.include? events(:salsa_event)
+    assert actual_events.include? expected_event
   end
 end

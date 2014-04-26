@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class OrganisationsControllerTest < ActionController::TestCase
+  def setup
+    @organisation = create(:organisation)
+  end
+
   test "index should list organisations" do
     get :index
 
@@ -41,11 +45,13 @@ class OrganisationsControllerTest < ActionController::TestCase
   end
 
   test "edit page lists associated events" do
-    get :edit, id: organisations(:salsa_org)
+    event = create(:event, organisation: @organisation)
+
+    get :edit, id: @organisation
 
     actual_events = assigns(:organisation).events
-    assert_equal organisations(:salsa_org).events, actual_events
-    assert actual_events.include? events(:salsa_event)
+    assert_equal @organisation.events, actual_events
+    assert actual_events.include? event
   end
 
   test "update valid organisation should save the organisation" do

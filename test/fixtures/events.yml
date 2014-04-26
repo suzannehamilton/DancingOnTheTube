@@ -1,9 +1,0 @@
-salsa_event:
-  organisation: :salsa_org
-  name: Salsa event
-  location: :bandstand
-
-west_coast_swing_event:
-  organisation: :west_coast_swing_org
-  name: WCS event
-  location: ballroom

@@ -25,8 +25,12 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test "event is associated with a location" do
-    location = events(:salsa_event).location
-    assert_equal locations(:bandstand), location
+    organisation = create(:org_with_locations)
+    expected_location = organisation.locations[0]
+    event = create(:event, location: expected_location, organisation: organisation)
+
+    location = event.location
+    assert_equal expected_location, location
   end
 
   test "event without a location is invalid" do
@@ -34,13 +38,5 @@ class EventTest < ActiveSupport::TestCase
     event.name = "New event"
     event.organisation = organisations(:salsa_org)
     refute event.save, "Saved an event without a location"
-  end
-
-  test "event location must be associated with the event's parent organisation" do
-    event = Event.new
-    event.name = "New event"
-    event.organisation = organisations(:salsa_org)
-    event.location = locations(:speakeasy)
-    refute event.save, "Saved event with an invalid location"
   end
 end

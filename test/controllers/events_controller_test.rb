@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class EventsControllerTest < ActionController::TestCase
+  def setup
+    @event = create(:event)
+    @recurring_event = create(:recurring_event)
+  end
+
   test "new should be a valid page" do
     get :new, organisation_id: organisations(:salsa_org)
     assert_response :success
@@ -52,20 +57,20 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   test "edit path gets event for editing" do
-    get :edit, id: events(:salsa_event), organisation_id: organisations(:salsa_org)
+    get :edit, id: @event, organisation_id: @event.organisation
 
     assert_response :success
-    assert_equal events(:salsa_event), assigns(:event)
+    assert_equal @event, assigns(:event)
   end
 
   test "updating a valid event saves the event" do
     new_name = "New name"
     post :update,
-      id: events(:salsa_event),
-      organisation_id: organisations(:salsa_org),
+      id: @event,
+      organisation_id: @event.organisation,
       event: {name: new_name}
 
-    updated_event = Event.find(events(:salsa_event).id)
+    updated_event = Event.find(@event)
     assert_equal new_name, updated_event.name
   end
 
@@ -73,33 +78,33 @@ class EventsControllerTest < ActionController::TestCase
     event_name = "New name"
 
     post :update,
-      id: events(:salsa_event),
-      organisation_id: organisations(:salsa_org),
+      id: @event,
+      organisation_id: @event.organisation,
       event: {name: event_name}
 
-    assert_redirected_to edit_organisation_path(organisations(:salsa_org),
+    assert_redirected_to edit_organisation_path(@event.organisation,
       :notice => "Event updated: " + event_name)
   end
 
   test "updating a recurring event saves the recurrence details" do
     post :update,
-      id: events(:salsa_event),
-      organisation_id: organisations(:salsa_org),
+      id: @recurring_event,
+      organisation_id: @recurring_event.organisation,
       event: {
         name: "New name",
         weekly_recurrence_attributes: {
           :day_of_week => 3,
           :frequency => 42,
-          :id => weekly_recurrences(:salsa_event_recurrence).id}}
+          :id => @recurring_event.weekly_recurrence}}
 
-    updated_event = Event.find(events(:salsa_event).id)
+    updated_event = Event.find(@recurring_event.id)
     assert_equal 3, updated_event.weekly_recurrence.day_of_week
     assert_equal 42, updated_event.weekly_recurrence.frequency
   end
 
   test "invalid update re-renders edit form" do
     post :update,
-      id: events(:salsa_event),
+      id: @event,
       organisation_id: organisations(:salsa_org),
       event: {name: ""}
     assert_response :success
@@ -107,18 +112,19 @@ class EventsControllerTest < ActionController::TestCase
   end
 
   test "delete path deletes an event" do
+    event = create(:event)
     assert_difference('Event.count', -1) do
-      post :destroy, id: events(:salsa_event), organisation_id: organisations(:salsa_org)
+      post :destroy, id: event.id, organisation_id: event.organisation.id
     end
 
-    assert_not Event.exists?(events(:salsa_event).id)
+    assert_not Event.exists?(event.id)
   end
 
   test "deletion redirects to organisation edit page" do
-    event_to_be_deleted = events(:salsa_event)
-    post :destroy, id: event_to_be_deleted, organisation_id: organisations(:salsa_org)
+    event_to_be_deleted = create(:event)
+    post :destroy, id: event_to_be_deleted, organisation_id: event_to_be_deleted.organisation
 
-    assert_redirected_to edit_organisation_path(organisations(:salsa_org),
+    assert_redirected_to edit_organisation_path(event_to_be_deleted.organisation,
       :notice => "Deleted event: " + event_to_be_deleted.name)
   end
 end
