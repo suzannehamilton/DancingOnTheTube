@@ -1,9 +1,6 @@
-require 'securerandom'
-
 FactoryGirl.define do
   factory :organisation do
-    # Use a UUID as the name, because organisation names must be unique
-    name {SecureRandom.uuid}
+    sequence(:name) {|n| "org#{n}" }
     url "http://www.example.com"
   end
 

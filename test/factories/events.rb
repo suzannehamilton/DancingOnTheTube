@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :event do
-    name "Lindy event"
+    sequence(:name) {|n| "event#{n}" }
     organisation
     location
 
