@@ -45,8 +45,8 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test "can get today's events" do
-    event_today_1 = create(:recurring_event, weekly_recurrence: recurrenceForDate(@today))
-    event_today_2 = create(:recurring_event, weekly_recurrence: recurrenceForDate(@today))
+    event_today_1 = create(:event_recurring_today)
+    event_today_2 = create(:event_recurring_today)
     event_other_day = create(:recurring_event, weekly_recurrence: recurrenceForDate(@today + 1))
 
     actual_events = Event.today

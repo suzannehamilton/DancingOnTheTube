@@ -14,8 +14,8 @@ class EventsTest < ActionDispatch::IntegrationTest
   def test_get_all_events_for_today
     today = Date.today
 
-    event1 = create(:recurring_event, weekly_recurrence: recurrenceForDate(today))
-    event2 = create(:event, weekly_recurrence: recurrenceForDate(today))
+    event1 = create(:event_recurring_today)
+    event2 = create(:event_recurring_today)
     past_event = create(:event, weekly_recurrence: recurrenceForDate(today - 1))
     future_event = create(:event, weekly_recurrence: recurrenceForDate(today + 1))
 
