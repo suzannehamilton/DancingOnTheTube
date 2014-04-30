@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
+  setup do
+    @today = Date.today
+  end
+
   test "should save valid event" do
     event = Event.new
     event.name = "New event"
@@ -38,5 +42,21 @@ class EventTest < ActiveSupport::TestCase
     event.name = "New event"
     event.organisation = organisations(:salsa_org)
     refute event.save, "Saved an event without a location"
+  end
+
+  test "can get today's events" do
+    event_today_1 = create(:recurring_event, weekly_recurrence: recurrenceForDate(@today))
+    event_today_2 = create(:recurring_event, weekly_recurrence: recurrenceForDate(@today))
+    event_other_day = create(:recurring_event, weekly_recurrence: recurrenceForDate(@today + 1))
+
+    actual_events = Event.today
+
+    assert actual_events.include?(event_today_1), "Did not fetch one of today's events"
+    assert actual_events.include?(event_today_2), "Did not fetch one of today's events"
+    refute actual_events.include?(event_other_day), "Got an event which is on another day"
+  end
+
+  def recurrenceForDate(date)
+    create(:weekly_recurrence, day_of_week: date.wday)
   end
 end
