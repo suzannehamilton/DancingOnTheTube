@@ -40,26 +40,4 @@ class WeeklyRecurrenceTest < ActiveSupport::TestCase
 
     refute recurrence.save, "Saved an invalid recurrence with an out-of-range day of the week"
   end
-
-  test "a recurrence cannot be saved without a frequency" do
-    recurrence = @recurrence
-    recurrence.frequency = nil
-
-    refute recurrence.save, "Saved an invalid recurrence with no frequency"
-  end
-
-  test "frequency cannot be zero" do
-    recurrence = @recurrence
-    recurrence.frequency = 0
-    recurrence.event = @event
-
-    refute recurrence.save, "Saved an invalid recurrence with zero frequency"
-  end
-
-  test "frequency cannot be negative" do
-    recurrence = @recurrence
-    recurrence.frequency = -1
-
-    refute recurrence.save, "Saved an invalid recurrence with negative frequency"
-  end
 end

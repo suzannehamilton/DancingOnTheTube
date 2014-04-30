@@ -50,8 +50,7 @@ class EventsControllerTest < ActionController::TestCase
             name: "Test name",
             location_id: locations(:town_hall),
             weekly_recurrence_attributes: {
-              :day_of_week => 2,
-              :frequency => 2}}
+              :day_of_week => 2}}
       end
     end
   end
@@ -94,12 +93,10 @@ class EventsControllerTest < ActionController::TestCase
         name: "New name",
         weekly_recurrence_attributes: {
           :day_of_week => 3,
-          :frequency => 42,
           :id => @recurring_event.weekly_recurrence}}
 
     updated_event = Event.find(@recurring_event.id)
     assert_equal 3, updated_event.weekly_recurrence.day_of_week
-    assert_equal 42, updated_event.weekly_recurrence.frequency
   end
 
   test "invalid update re-renders edit form" do
