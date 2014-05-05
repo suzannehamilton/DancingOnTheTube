@@ -11,6 +11,14 @@ FactoryGirl.define do
     factory :event_recurring_today do
       association :weekly_recurrence, day_of_week: Date.today.wday
     end
+
+    factory :event_recurring_tomorrow do
+      association :weekly_recurrence, day_of_week: (Date.today.wday + 1)
+    end
+
+    factory :event_recurring_yesterday do
+      association :weekly_recurrence, day_of_week: (Date.today.wday - 1)
+    end
   end
 
   factory :weekly_recurrence do
