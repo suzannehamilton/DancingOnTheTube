@@ -49,13 +49,6 @@ class OrganisationTest < ActiveSupport::TestCase
     refute organisation.save, "Saved a organisation without a url"
   end
 
-  test "has associated dances" do
-    dances = organisations(:salsa_org).dances
-
-    assert dances.include? dances(:salsa)
-    assert dances.include? dances(:bachata)
-  end
-
   test "has associated locations" do
     locations = organisations(:salsa_org).locations
 

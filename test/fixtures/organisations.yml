@@ -1,10 +1,8 @@
 west_coast_swing_org:
   name: WCS organisation
   url: http://www.test-wcs.me
-  dances: west_coast_swing
 
 salsa_org:
   name: Salsa organisation
   url: http://www.test-salsa-org.com
-  dances: salsa, bachata
   locations: town_hall, bandstand
