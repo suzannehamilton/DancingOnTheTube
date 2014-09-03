@@ -5,7 +5,6 @@ Dott::Application.routes.draw do
 
   root 'welcome#index'
 
-  resources :dances
   resources :locations
 
   resources :organisations do
@@ -13,7 +12,6 @@ Dott::Application.routes.draw do
   end
 
   namespace :api do
-    resources :dances, only: [:index]
     resources :events, only: [:index]
   end
 
