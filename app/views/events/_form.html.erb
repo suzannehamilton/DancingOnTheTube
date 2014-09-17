@@ -12,7 +12,7 @@
   <%= f.fields_for :weekly_recurrence do |r| %>
     <h2>Weekly recurrence</h2>
     <p>
-      <%= r.select :day_of_week, (0..6), {prompt: 'Select day of week'}%>
+      <%= r.select :day_of_week, days_of_week.each_with_index.map { |d,i| [d, i] }, {prompt: 'Select day of week'}%>
     </p>
   <% end %>
 
