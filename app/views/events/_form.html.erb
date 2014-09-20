@@ -5,7 +5,7 @@
   </p>
 
   <div class="form-group">
-    <%= f.label :locations %><br>
+    <%= f.label :location %><br>
     <%= f.select :location_id, event.organisation.locations.collect {|x| [x.name, x.id]}, {} %>
   </div>
 
