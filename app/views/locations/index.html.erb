@@ -2,10 +2,10 @@
 
 <%= link_to 'New location', new_location_path %>
 
-<% @locations.each do |location| %>
-  <ul>
+<ul>
+  <% @locations.each do |location| %>
     <li>
       <%= location.name %> <%= link_to 'Edit', edit_location_path(location) %> <%= link_to 'Delete', location_path(location), method: :delete, data: { confirm: 'Are you sure?' } %>
     </li>
-  </ul>
-<% end %>
+  <% end %>
+</ul>
