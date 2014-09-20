@@ -13,11 +13,11 @@ FactoryGirl.define do
     end
 
     factory :event_recurring_tomorrow do
-      association :weekly_recurrence, day_of_week: (Date.today.wday + 1)
+      association :weekly_recurrence, day_of_week: (Date.today.wday + 1) % 7
     end
 
     factory :event_recurring_yesterday do
-      association :weekly_recurrence, day_of_week: (Date.today.wday - 1)
+      association :weekly_recurrence, day_of_week: (Date.today.wday - 1) % 7
     end
   end
 
