@@ -17,3 +17,4 @@
 
 # Ignore editor config files
 *.sublime-project
+*.sublime-workspace
