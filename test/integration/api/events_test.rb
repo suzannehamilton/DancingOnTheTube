@@ -2,7 +2,7 @@ require "test_helper"
 
 class EventsTest < ActionDispatch::IntegrationTest
   def test_get_all_events_is_empty_by_default
-    get "api/events", {}, { "Accept" => "application/json" }
+    get "/api/events", {}, { "Accept" => "application/json" }
     assert_equal 200, status
 
     body = JSON.parse(response.body)
@@ -19,7 +19,7 @@ class EventsTest < ActionDispatch::IntegrationTest
     past_event = create(:event_recurring_yesterday)
     future_event = create(:event_recurring_tomorrow)
 
-    get "api/events", {}, { "Accept" => "application/json" }
+    get "/api/events", {}, { "Accept" => "application/json" }
     assert_equal 200, status
 
     body = JSON.parse(response.body)

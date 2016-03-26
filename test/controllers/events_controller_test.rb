@@ -69,7 +69,7 @@ class EventsControllerTest < ActionController::TestCase
       organisation_id: @event.organisation,
       event: {name: new_name}
 
-    updated_event = Event.find(@event)
+    updated_event = Event.find(@event.id)
     assert_equal new_name, updated_event.name
   end
 

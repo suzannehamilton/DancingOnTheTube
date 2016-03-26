@@ -9,6 +9,6 @@ class Organisation < ActiveRecord::Base
   validates :url,
             presence: true
 
-  default_scope order(:name)
+  default_scope { order(:name) }
 
 end
