@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class Admin::EventsController < ApplicationController
   def new
     @event = Event.new
     @event.organisation = Organisation.find(params[:organisation_id])
@@ -13,7 +13,7 @@ class EventsController < ApplicationController
     @event.organisation = @organisation
 
     if @event.save
-      redirect_to edit_organisation_path(organisation_id, notice: "New event created: " + @event.name)
+      redirect_to edit_admin_organisation_path(organisation_id, notice: "New event created: " + @event.name)
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     if @event.update(post_params)
-      redirect_to edit_organisation_path(@event.organisation, notice: "Event updated: " + @event.name)
+      redirect_to edit_admin_organisation_path(@event.organisation, notice: "Event updated: " + @event.name)
     else
       render 'edit'
     end
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
 
-    redirect_to edit_organisation_path(params[:organisation_id], :notice => "Deleted event: " + @event.name)
+    redirect_to edit_admin_organisation_path(params[:organisation_id], :notice => "Deleted event: " + @event.name)
   end
 
   private

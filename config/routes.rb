@@ -26,10 +26,12 @@ Rails.application.routes.draw do
   #     end
   #   end
 
-  resources :locations
+  namespace :admin do
+    resources :locations
 
-  resources :organisations do
-    resources :events
+    resources :organisations do
+      resources :events
+    end
   end
 
   namespace :api do

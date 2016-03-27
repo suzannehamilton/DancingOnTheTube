@@ -1,0 +1,16 @@
+<h1>Edit Organisation</h1>
+
+<%= render partial: "form", locals: {organisation: @organisation} %>
+
+<h2>Weekly events</h2>
+<ul>
+  <% @organisation.events.each do |event| %>
+    <li>
+      <%= event.name %>
+      <%= link_to 'Edit', edit_admin_organisation_event_path(@organisation, event) %>
+      <%= link_to 'Delete', admin_organisation_event_path(@organisation, event), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>
+
+<p><%= link_to 'New event', new_admin_organisation_event_path(@organisation) %></p>

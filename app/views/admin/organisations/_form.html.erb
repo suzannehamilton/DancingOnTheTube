@@ -1,4 +1,4 @@
-<%= form_for(organisation) do |f| %>
+<%= form_for([:admin, organisation]) do |f| %>
   <p>
     <%= f.label :name %><br>
     <%= f.text_field :name %>

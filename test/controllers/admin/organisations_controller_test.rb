@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OrganisationsControllerTest < ActionController::TestCase
+class Admin::OrganisationsControllerTest < ActionController::TestCase
   def setup
     @organisation = create(:organisation)
   end

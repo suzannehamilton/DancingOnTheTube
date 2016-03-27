@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LocationsControllerTest < ActionController::TestCase
+class Admin::LocationsControllerTest < ActionController::TestCase
   test "index should list locations" do
     get :index
 

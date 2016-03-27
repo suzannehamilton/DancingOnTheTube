@@ -1,0 +1,3 @@
+<h1>New event for <%= @event.organisation.name %></h1>
+
+<%= render partial: "form", locals: {event: @event, url: admin_organisation_events_path} %>

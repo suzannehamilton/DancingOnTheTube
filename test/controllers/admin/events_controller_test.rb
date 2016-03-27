@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EventsControllerTest < ActionController::TestCase
+class Admin::EventsControllerTest < ActionController::TestCase
   def setup
     @event = create(:event)
     @recurring_event = create(:recurring_event)
@@ -37,7 +37,7 @@ class EventsControllerTest < ActionController::TestCase
     post :create,
       organisation_id: organisations(:salsa_org),
       event: {name: event_name, location_id: locations(:town_hall)}
-    assert_redirected_to edit_organisation_path(organisations(:salsa_org),
+    assert_redirected_to edit_admin_organisation_path(organisations(:salsa_org),
       :notice => "New event created: " + event_name)
   end
 
@@ -81,7 +81,7 @@ class EventsControllerTest < ActionController::TestCase
       organisation_id: @event.organisation,
       event: {name: event_name}
 
-    assert_redirected_to edit_organisation_path(@event.organisation,
+    assert_redirected_to edit_admin_organisation_path(@event.organisation,
       :notice => "Event updated: " + event_name)
   end
 
@@ -121,7 +121,7 @@ class EventsControllerTest < ActionController::TestCase
     event_to_be_deleted = create(:event)
     post :destroy, id: event_to_be_deleted, organisation_id: event_to_be_deleted.organisation
 
-    assert_redirected_to edit_organisation_path(event_to_be_deleted.organisation,
+    assert_redirected_to edit_admin_organisation_path(event_to_be_deleted.organisation,
       :notice => "Deleted event: " + event_to_be_deleted.name)
   end
 end
