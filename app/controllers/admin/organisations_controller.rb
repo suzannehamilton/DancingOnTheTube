@@ -1,4 +1,4 @@
-class Admin::OrganisationsController < ApplicationController
+class Admin::OrganisationsController < Admin::AdminController
   def index
     @organisations = Organisation.all
   end

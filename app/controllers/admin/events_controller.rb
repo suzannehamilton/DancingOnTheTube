@@ -1,4 +1,4 @@
-class Admin::EventsController < ApplicationController
+class Admin::EventsController < Admin::AdminController
   def new
     @event = Event.new
     @event.organisation = Organisation.find(params[:organisation_id])
