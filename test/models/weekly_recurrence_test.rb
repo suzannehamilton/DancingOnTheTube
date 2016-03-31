@@ -6,17 +6,10 @@ class WeeklyRecurrenceTest < ActiveSupport::TestCase
     @recurrence = build(:weekly_recurrence, event: @event)
   end
 
-  test "a valid event can be saved" do
+  test "a valid recurring event can be saved" do
     recurrence = @recurrence
 
     assert recurrence.save, "Did not save a valid recurrence"
-  end
-
-  test "a recurrence cannot be saved without an event" do
-    recurrence = @recurrence
-    recurrence.event = nil
-
-    refute recurrence.save, "Saved an invalid recurrence that was not connected to an event"
   end
 
   test "a recurrence cannot be saved without a day of the week" do

@@ -23,6 +23,5 @@ FactoryGirl.define do
 
   factory :weekly_recurrence do
     day_of_week 0
-    event
   end
 end
