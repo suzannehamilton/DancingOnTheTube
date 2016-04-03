@@ -13,12 +13,17 @@ class WelcomeControllerTest < ActionController::TestCase
     assert_response :success
 
     events = assigns(:events)
+    classes_by_day = events.classes_by_day
     classes = events.classes
 
-    assert_equal 4, classes.length
-    assert_equal monday_event_1.name, classes[0].name
-    assert_equal monday_event_2.name, classes[1].name
-    assert_equal thursday_event.name, classes[2].name
-    assert_equal saturday_event.name, classes[3].name
+    assert_equal 2, classes_by_day[:monday].length
+    assert_equal monday_event_1.name, classes_by_day[:monday][0].name
+    assert_equal monday_event_2.name, classes_by_day[:monday][1].name
+
+    assert_equal 1, classes_by_day[:thursday].length
+    assert_equal thursday_event.name, classes_by_day[:thursday][0].name
+
+    assert_equal 1, classes_by_day[:saturday].length
+    assert_equal saturday_event.name, classes_by_day[:saturday][0].name
   end
 end
