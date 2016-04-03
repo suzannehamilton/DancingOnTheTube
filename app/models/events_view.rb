@@ -3,9 +3,6 @@ class EventsView
   attr_reader :classes, :classes_by_day
 
   def initialize(events)
-    # TODO: Delete @classes
-    @classes = events.select { |e| !e.weekly_recurrence.nil? }
-
     # TODO: Make constant or get from Date
     days = [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday]
     # TODO: Tidy

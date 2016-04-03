@@ -3,9 +3,16 @@
 <h2>Regular weekly classes</h2>
 
 <ul>
-  <% @events.classes.each do |c| %>
+  <% @events.classes_by_day.each do |day, classes| %>
     <li>
-      <%= c.name %>
+      <%= day.capitalize %>
+      <ul>
+        <% classes.each do |c| %>
+          <li>
+            <%= c.name %>
+          </li>
+        <% end %>
+      </ul>
     </li>
   <% end %>
 </ul>
