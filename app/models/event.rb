@@ -11,4 +11,8 @@ class Event < ActiveRecord::Base
   validates :name, presence: true
 
   scope :today, -> { joins(:weekly_recurrence).where(weekly_recurrences: { day_of_week: Date.today.wday }) }
+
+  def recurs_on_day? day_of_week
+    !weekly_recurrence.nil? && weekly_recurrence.day_of_week == DateTime.parse(day_of_week.to_s).wday
+  end
 end

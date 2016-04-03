@@ -56,6 +56,33 @@ class EventTest < ActiveSupport::TestCase
     refute actual_events.include?(event_other_day), "Got an event which is on another day"
   end
 
+  test "recurring event is on a specific day of the week" do
+    event = build(:weekly_event, weekday: :tuesday)
+
+    assert event.recurs_on_day?(:tuesday), "Tuesday event denies that it is on Tuesday"
+  end
+
+  test "recurring event is not on another day of the week" do
+    event = build(:weekly_event, weekday: :tuesday)
+
+    assert !event.recurs_on_day?(:wednesday), "Tuesday event thinks that it is on Wednesday"
+  end
+
+  test "non-recurring event does not recur on a specific day of the week" do
+    event = build(:event)
+
+    # TODO: Use constant on Date?
+    assert !event.recurs_on_day?(:monday)
+    assert !event.recurs_on_day?(:tuesday)
+    assert !event.recurs_on_day?(:wednesday)
+    assert !event.recurs_on_day?(:thursday)
+    assert !event.recurs_on_day?(:friday)
+    assert !event.recurs_on_day?(:saturday)
+    assert !event.recurs_on_day?(:sunday)
+  end
+
+  # TODO: Parameterised tests?
+
   def recurrenceForDate(date)
     create(:weekly_recurrence, day_of_week: date.wday)
   end
