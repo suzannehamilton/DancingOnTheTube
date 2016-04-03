@@ -8,6 +8,15 @@ FactoryGirl.define do
       weekly_recurrence
     end
 
+    factory :weekly_event do
+      transient do
+        weekday :monday
+      end
+
+      weekly_recurrence { FactoryGirl.build(:weekly_recurrence, day_of_week: DateTime.parse(weekday.to_s).wday) }
+    end
+
+    # TODO: Can these all be deleted?
     factory :event_recurring_today do
       association :weekly_recurrence, day_of_week: Date.today.wday
     end

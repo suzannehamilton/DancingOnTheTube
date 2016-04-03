@@ -33,7 +33,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem "factory_girl_rails", "~> 4.1"
+gem "factory_girl_rails", "~> 4.6"
 
 gem 'responders', '~> 2.0'
 
