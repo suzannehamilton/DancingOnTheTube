@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class EventTest < ActiveSupport::TestCase
+
+  DAYS = [:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday]
+
   setup do
     @today = Date.today
   end
@@ -56,32 +59,27 @@ class EventTest < ActiveSupport::TestCase
     refute actual_events.include?(event_other_day), "Got an event which is on another day"
   end
 
-  test "recurring event is on a specific day of the week" do
-    event = build(:weekly_event, weekday: :tuesday)
+  DAYS.each do |day|
+    define_method("test_#{day}_event_recurs_on_#{day}") do
+      event = build(:weekly_event, weekday: day)
 
-    assert event.recurs_on_day?(:tuesday), "Tuesday event denies that it is on Tuesday"
+      assert event.recurs_on_day?(day), "#{day} event denies that it is on #{day}"
+    end
+
+    DAYS.select { |d| d != day }.each do |other_day|
+      define_method("test_#{day}_event_does_not_recur_on_#{other_day}") do
+        event = build(:weekly_event, weekday: day)
+
+        assert !event.recurs_on_day?(other_day), "#{day} event is incorrectly on #{other_day}"
+      end
+    end
+
+    define_method("test_non_recurring_event_does_not_recur_on_#{day}") do
+      event = build(:event)
+
+      assert !event.recurs_on_day?(:monday), "Non-recurring event recurs on #{day}"
+    end
   end
-
-  test "recurring event is not on another day of the week" do
-    event = build(:weekly_event, weekday: :tuesday)
-
-    assert !event.recurs_on_day?(:wednesday), "Tuesday event thinks that it is on Wednesday"
-  end
-
-  test "non-recurring event does not recur on a specific day of the week" do
-    event = build(:event)
-
-    # TODO: Use constant on Date?
-    assert !event.recurs_on_day?(:monday)
-    assert !event.recurs_on_day?(:tuesday)
-    assert !event.recurs_on_day?(:wednesday)
-    assert !event.recurs_on_day?(:thursday)
-    assert !event.recurs_on_day?(:friday)
-    assert !event.recurs_on_day?(:saturday)
-    assert !event.recurs_on_day?(:sunday)
-  end
-
-  # TODO: Parameterised tests?
 
   def recurrenceForDate(date)
     create(:weekly_recurrence, day_of_week: date.wday)
