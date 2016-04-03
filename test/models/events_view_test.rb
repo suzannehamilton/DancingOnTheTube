@@ -1,7 +1,6 @@
 require 'test_helper'
 
-# TODO: Rename to EventsViewTest?
-class EventsViewModelTest < ActiveSupport::TestCase
+class EventsViewTest < ActiveSupport::TestCase
   test "classes are events with grouped by weekly recurrence" do
 
     monday_event_1 = create(:weekly_event, weekday: :monday)
