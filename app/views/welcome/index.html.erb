@@ -5,11 +5,13 @@
 <ul>
   <% @events.classes_by_day.each do |day, classes| %>
     <li>
-      <%= day.capitalize %>
+      <h3><%= day.capitalize %></h3>
       <ul>
         <% classes.each do |c| %>
           <li>
-            <%= c.name %>
+            <h4><%= c.name %></h4>
+            <p>Run by: <a href="<%= c.organisation.url %>"><%= c.organisation.name %><a/></p>
+            <p>Venue: <%= c.location.name %></p>
           </li>
         <% end %>
       </ul>
